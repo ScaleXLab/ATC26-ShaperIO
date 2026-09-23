@@ -2,6 +2,12 @@
 
 Artifact for **The GPU Changes Everything: Rethinking GPU I/O Stack at Massive Scale**, USENIX ATC 2026.
 
+## Access to the Review Server
+
+A dedicated evaluation server is provided for artifact review. SSH connection details and credentials are supplied privately to the artifact evaluation committee through the submission system.
+
+The review account starts without a repository checkout. After logging in, follow the setup instructions below to clone this repository, build the benchmarks, and run the experiments. Public users can clone the same repository and use a host meeting the hardware and software requirements below.
+
 ## Hardware and Software
 
 - NVIDIA A100-SXM4-40GB, with PCIe peer-to-peer access to the SSD.
