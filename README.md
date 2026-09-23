@@ -8,28 +8,35 @@ Artifact for **The GPU Changes Everything: Rethinking GPU I/O Stack at Massive S
 - Samsung PM9A3 7.68 TB, firmware GDC5602Q, namespace 1, 512-byte LBA format.
 - Intel Xeon Gold 6530 CPU.
 - Linux 6.8, CUDA 12.4, NVIDIA open kernel driver 550.54.14, and NVIDIA GDS/cuFile.
-- CMake 3.18+, GCC with C++11, Python 3.10+, and Matplotlib 3.6+.
+- CMake 3.18+, GCC with C++11, Python 3.10+, and Matplotlib 3.5+.
 - Linux kernel headers and the matching NVIDIA driver sources and `Module.symvers`.
 
-The experiment commands run as root. They format the SSD selected in `configs/device.json` and erase its contents. Use a dedicated experiment SSD.
+Use an account with sudo access. The experiment commands format the SSD selected in `configs/device.json` and erase its contents. Use a dedicated experiment SSD.
 
 ## Setup
 
-Install GCC/G++, CMake, kernel headers, NVMe utilities, and the Python 3, Matplotlib, and NumPy runtime and plotting dependencies:
+Install Git, GCC/G++, CMake, kernel headers, NVMe utilities, and the Python 3, Matplotlib, and NumPy runtime and plotting dependencies. GCC 12 is needed to build the module for the provided Linux 6.8 kernel:
 
 ```bash
-apt update
-apt install -y build-essential cmake linux-headers-$(uname -r) nvme-cli \
+sudo apt update
+sudo apt install -y git build-essential gcc-12 cmake linux-headers-$(uname -r) nvme-cli \
   e2fsprogs util-linux python3 python3-matplotlib python3-numpy
 export PATH=/usr/local/cuda/bin:$PATH
 export CUDA_MODULE_LOADING=EAGER
 ```
 
-Enable Above 4G Decoding in the BIOS, disable IOMMU, and configure the PCIe path for peer-to-peer access. Install CUDA, the NVIDIA open driver, and GDS. Check the GDS installation with:
+Clone the repository and enter it. Run all remaining commands from this directory:
 
 ```bash
-modprobe nvidia-fs
-/usr/local/cuda/gds/tools/gdscheck -p
+git clone https://github.com/ScaleXLab/ATC26-ShaperIO.git
+cd ATC26-ShaperIO
+```
+
+The provided review host already has CUDA, the NVIDIA open driver, GDS, matching driver sources, and the BIOS/PCIe configuration installed. On another host, enable Above 4G Decoding in the BIOS, disable IOMMU, configure the PCIe path for peer-to-peer access, and install these components. Check that NVMe and the GPU are supported and that platform verification succeeds:
+
+```bash
+sudo modprobe nvidia-fs
+sudo /usr/local/cuda/gds/tools/gdscheck -p
 ```
 
 Build the benchmarks and the libnvm module:
@@ -44,21 +51,25 @@ cmake --build build -j 8
 cmake --build build --target kernel_module
 ```
 
-Load libnvm once, then allocate hugepages for the NVMe queues:
+Return the experiment SSD to the kernel driver, load the newly built libnvm module, and allocate hugepages for the NVMe queues:
 
 ```bash
-insmod build/module/libnvm.ko max_num_ctrls=64
-sysctl -w vm.nr_hugepages=512
+sudo python3 tools/prepare_pm9a3.py kernel
+if [ -d /sys/module/libnvm ]; then
+  sudo rmmod libnvm
+fi
+sudo insmod build/module/libnvm.ko max_num_ctrls=64
+sudo sysctl -w vm.nr_hugepages=512
 ```
 
-Run the following commands from the repository root. Each command handles device identity checks, formatting, driver binding, measurements, and plotting. Each point runs **once** by default; append `--repetitions 3` to measure each point three times.
+Run the following experiments one at a time. Each command handles device identity checks, formatting, driver binding, measurements, and plotting, and sets `CUDA_MODULE_LOADING=EAGER` for the benchmarks. Each point runs **once** by default; append `--repetitions 3` to measure each point three times. Each output directory must be new; move an earlier result directory before repeating its command.
 
 ## Write Concurrency and Read Bandwidth (Figure 1(a))
 
 Write data using BaM and GDS, then measure read bandwidth as write concurrency increases:
 
 ```bash
-python3 tools/run_figures.py fig1a --output results/fig1a --allow-write
+sudo python3 tools/run_figures.py fig1a --output results/fig1a --allow-write
 ```
 
 The script formats the SSD before each write condition. Logs and CSV files are saved under `results/fig1a/`; plots are saved as `results/fig1a/figures/fig1a.png` and `fig1a.pdf`.
@@ -68,7 +79,7 @@ The script formats the SSD before each write condition. Logs and CSV files are s
 Measure how increasing BaM read concurrency affects bandwidth after low- and high-concurrency writes:
 
 ```bash
-python3 tools/run_figures.py fig1b --output results/fig1b --allow-write
+sudo python3 tools/run_figures.py fig1b --output results/fig1b --allow-write
 ```
 
 The script formats the SSD before each writer/reader condition. Logs and CSV files are saved under `results/fig1b/`; plots are saved as `results/fig1b/figures/fig1b.png` and `fig1b.pdf`.
@@ -78,7 +89,7 @@ The script formats the SSD before each writer/reader condition. Logs and CSV fil
 Sweep BaM read concurrency and measure bandwidth and P50/P99 I/O latency:
 
 ```bash
-python3 tools/run_figures.py fig1c --output results/fig1c --allow-write
+sudo python3 tools/run_figures.py fig1c --output results/fig1c --allow-write
 ```
 
 The script formats the SSD and sequentially writes the data once per repetition. All read conditions in that repetition share the prepared data. Logs and CSV files are saved under `results/fig1c/`; plots are saved as `results/fig1c/figures/fig1c.png` and `fig1c.pdf`.
@@ -88,7 +99,7 @@ The script formats the SSD and sequentially writes the data once per repetition.
 Compare post-write read bandwidth for BaM, GDS, and ShaperIO across write concurrency levels:
 
 ```bash
-python3 tools/run_figures.py fig3 --output results/fig3 --allow-write
+sudo python3 tools/run_figures.py fig3 --output results/fig3 --allow-write
 ```
 
 The script formats the SSD before each write condition for each system. Logs and CSV files are saved under `results/fig3/`; plots are saved as `results/fig3/figures/fig3.png` and `fig3.pdf`.
@@ -98,7 +109,8 @@ The script formats the SSD before each write condition for each system. Logs and
 Return the SSD to the kernel driver after completing the experiments:
 
 ```bash
-python3 tools/prepare_pm9a3.py kernel
+sudo python3 tools/prepare_pm9a3.py kernel
+sudo chown -R "$(id -u):$(id -g)" results
 ```
 
 ## Plot the Included Results
