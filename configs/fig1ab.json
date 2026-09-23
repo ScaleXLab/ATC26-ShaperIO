@@ -1,0 +1,16 @@
+{
+  "queues": 128,
+  "queue_depth": 256,
+  "total_bytes": 1073741824,
+  "write_io_bytes": 4096,
+  "read_io_bytes": 65536,
+  "postwrite_per_thread_bytes": 2097152,
+  "postwrite_max_batches": 8,
+  "buffer_bytes": 4294967296,
+  "shaperio_window": 16,
+  "ring_entries": 4096,
+  "seed": 133,
+  "repetitions": 1,
+  "timeout_seconds": 1800,
+  "reset_each_condition": true
+}

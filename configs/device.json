@@ -1,0 +1,12 @@
+{
+  "device_model": "SAMSUNG MZQL27T6HBLA-00A07",
+  "device_serial": "S6CKNT0W914900",
+  "device_bdf": "0000:27:00.0",
+  "controller": "/dev/libnvm0",
+  "namespace_id": 1,
+  "gpu": 0,
+  "offset_bytes": 322122547200,
+  "scratch_bytes": 68719476736,
+  "gds_file": "/mnt/shaperio-ae-pm9a3/core.bin",
+  "gds_offset_bytes": 0
+}

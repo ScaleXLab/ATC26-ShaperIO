@@ -1,0 +1,26 @@
+{
+  "source": "/root/paper-writing/ShaperIO-AE",
+  "files": [
+    {
+      "path": "benchmarks/io/gpu_io_benchmark.cu",
+      "sha256": "5df68b903c1e5cd41afa805cd4e99bc6a39b705e07a4b17eb25ed9aa964b0aa6",
+      "source_path": "benchmarks/core/gpu.cu",
+      "source_sha256": "8f1b28397c441ba2c21d2a9964e020213cfa1cd299a04000d86e736932e808f7",
+      "changes": "Renamed file and shared workload header include."
+    },
+    {
+      "path": "benchmarks/io/gds_io_benchmark.cu",
+      "sha256": "284b6028925d3c3f0dca6da4df2680e6b850325814c4c515ac6cac940a4a898c",
+      "source_path": "benchmarks/core/gds.cu",
+      "source_sha256": "b859fe47a5d1fc92886f95f295b77af6a8ce3547791d5be6efb144a10337b9c3",
+      "changes": "Renamed file and shared workload header include."
+    },
+    {
+      "path": "benchmarks/io/io_workload.h",
+      "sha256": "bcdd09099225f1b7471197e413cf5eb6e714c9f59136f124418bcfa7ba8b6530",
+      "source_path": "benchmarks/core/workload.h",
+      "source_sha256": "bcdd09099225f1b7471197e413cf5eb6e714c9f59136f124418bcfa7ba8b6530",
+      "changes": "Renamed file."
+    }
+  ]
+}

@@ -1,0 +1,726 @@
+{
+  "status": "completed",
+  "scope": "pilot-not-paper-validated",
+  "config": {
+    "device_model": "SAMSUNG MZQL27T6HBLA-00A07",
+    "device_serial": "S6CKNT0W914900",
+    "device_bdf": "0000:27:00.0",
+    "controller": "/dev/libnvm0",
+    "namespace_id": 1,
+    "gpu": 0,
+    "queues": 128,
+    "queue_depth": 256,
+    "offset_bytes": 322122547200,
+    "scratch_bytes": 68719476736,
+    "gds_file": "/mnt/shaperio-ae-pm9a3/core.bin",
+    "gds_offset_bytes": 0,
+    "total_bytes": 1073741824,
+    "working_set_bytes": 42949672960,
+    "write_io_bytes": 4096,
+    "read_io_bytes": 65536,
+    "postwrite_per_thread_bytes": 2097152,
+    "postwrite_max_batches": 8,
+    "buffer_bytes": 4294967296,
+    "shaperio_window": 16,
+    "ring_entries": 4096,
+    "seed": 133,
+    "repetitions": 3,
+    "timeout_seconds": 1800,
+    "reset_each_condition": true,
+    "state_protocol": "Authorized PM9A3 only. NVMe format NSID1 LBAF0 SES0 before each condition/repetition. Historical workload: 4KiB writes, 64KiB reads, 2MiB per GPU writer with up to 8 batches to cover 1GiB, fallback to one 1GiB batch at 1/8 writers. High concurrency writes up to 8GiB and rereads first 1GiB. GDS uses a 1GiB file. This profile differs from the literal final-paper 64KiB write description."
+  },
+  "panel": "fig1a",
+  "backend": "gds",
+  "jobs": [
+    {
+      "panel": "fig1a",
+      "backend": "gds",
+      "x": 1,
+      "condition": "readers=64",
+      "steps": [
+        {
+          "phase": "write",
+          "writes": true,
+          "expected_bytes": 1073741824,
+          "argv": [
+            "/tmp/shaperio-history-build/bin/nvm-core-gds",
+            "--op",
+            "write",
+            "--pattern",
+            "sequential",
+            "--threads",
+            "1",
+            "--bytes",
+            "1073741824",
+            "--io",
+            "4096",
+            "--offset",
+            "0",
+            "--gpu",
+            "0",
+            "--seed",
+            "133",
+            "--latency",
+            "0",
+            "--file",
+            "/mnt/shaperio-ae-pm9a3/core.bin",
+            "--allow-write",
+            "1"
+          ]
+        },
+        {
+          "phase": "postwrite-read",
+          "writes": false,
+          "expected_bytes": 1073741824,
+          "argv": [
+            "/tmp/shaperio-history-build/bin/nvm-core-gds",
+            "--op",
+            "read",
+            "--pattern",
+            "sequential",
+            "--threads",
+            "64",
+            "--bytes",
+            "1073741824",
+            "--io",
+            "65536",
+            "--offset",
+            "0",
+            "--gpu",
+            "0",
+            "--seed",
+            "133",
+            "--latency",
+            "0",
+            "--file",
+            "/mnt/shaperio-ae-pm9a3/core.bin"
+          ]
+        }
+      ]
+    },
+    {
+      "panel": "fig1a",
+      "backend": "gds",
+      "x": 8,
+      "condition": "readers=64",
+      "steps": [
+        {
+          "phase": "write",
+          "writes": true,
+          "expected_bytes": 1073741824,
+          "argv": [
+            "/tmp/shaperio-history-build/bin/nvm-core-gds",
+            "--op",
+            "write",
+            "--pattern",
+            "sequential",
+            "--threads",
+            "8",
+            "--bytes",
+            "1073741824",
+            "--io",
+            "4096",
+            "--offset",
+            "0",
+            "--gpu",
+            "0",
+            "--seed",
+            "133",
+            "--latency",
+            "0",
+            "--file",
+            "/mnt/shaperio-ae-pm9a3/core.bin",
+            "--allow-write",
+            "1"
+          ]
+        },
+        {
+          "phase": "postwrite-read",
+          "writes": false,
+          "expected_bytes": 1073741824,
+          "argv": [
+            "/tmp/shaperio-history-build/bin/nvm-core-gds",
+            "--op",
+            "read",
+            "--pattern",
+            "sequential",
+            "--threads",
+            "64",
+            "--bytes",
+            "1073741824",
+            "--io",
+            "65536",
+            "--offset",
+            "0",
+            "--gpu",
+            "0",
+            "--seed",
+            "133",
+            "--latency",
+            "0",
+            "--file",
+            "/mnt/shaperio-ae-pm9a3/core.bin"
+          ]
+        }
+      ]
+    },
+    {
+      "panel": "fig1a",
+      "backend": "gds",
+      "x": 64,
+      "condition": "readers=64",
+      "steps": [
+        {
+          "phase": "write",
+          "writes": true,
+          "expected_bytes": 1073741824,
+          "argv": [
+            "/tmp/shaperio-history-build/bin/nvm-core-gds",
+            "--op",
+            "write",
+            "--pattern",
+            "sequential",
+            "--threads",
+            "64",
+            "--bytes",
+            "1073741824",
+            "--io",
+            "4096",
+            "--offset",
+            "0",
+            "--gpu",
+            "0",
+            "--seed",
+            "133",
+            "--latency",
+            "0",
+            "--file",
+            "/mnt/shaperio-ae-pm9a3/core.bin",
+            "--allow-write",
+            "1"
+          ]
+        },
+        {
+          "phase": "postwrite-read",
+          "writes": false,
+          "expected_bytes": 1073741824,
+          "argv": [
+            "/tmp/shaperio-history-build/bin/nvm-core-gds",
+            "--op",
+            "read",
+            "--pattern",
+            "sequential",
+            "--threads",
+            "64",
+            "--bytes",
+            "1073741824",
+            "--io",
+            "65536",
+            "--offset",
+            "0",
+            "--gpu",
+            "0",
+            "--seed",
+            "133",
+            "--latency",
+            "0",
+            "--file",
+            "/mnt/shaperio-ae-pm9a3/core.bin"
+          ]
+        }
+      ]
+    }
+  ],
+  "no_prewrite": false,
+  "started_utc": "2026-09-22T22:22:13.190253+00:00",
+  "binary_sha256": {
+    "/tmp/shaperio-history-build/bin/nvm-core-gds": "5ecd9713760513efdebcdd4303374ae4b89aa91213336bc78a1c6c380eb865c9"
+  },
+  "records": [
+    {
+      "repeat": 1,
+      "job": 0,
+      "phase": "write",
+      "log": "01-000-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 1,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 5.311791082,
+        "bandwidth_gib_s": 0.188260416,
+        "fdatasync_seconds": 8.469e-05,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 1,
+      "job": 0,
+      "phase": "postwrite-read",
+      "log": "01-000-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.221708408,
+        "bandwidth_gib_s": 4.510428851,
+        "fdatasync_seconds": 3.9e-08,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 1,
+      "job": 2,
+      "phase": "write",
+      "log": "01-002-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 2.050728513,
+        "bandwidth_gib_s": 0.487631587,
+        "fdatasync_seconds": 8.2018e-05,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 1,
+      "job": 2,
+      "phase": "postwrite-read",
+      "log": "01-002-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.372911062,
+        "bandwidth_gib_s": 2.681604548,
+        "fdatasync_seconds": 4.1e-08,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 1,
+      "job": 1,
+      "phase": "write",
+      "log": "01-001-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 8,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 1.952383217,
+        "bandwidth_gib_s": 0.512194528,
+        "fdatasync_seconds": 0.000122591,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 1,
+      "job": 1,
+      "phase": "postwrite-read",
+      "log": "01-001-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.36653922,
+        "bandwidth_gib_s": 2.728221007,
+        "fdatasync_seconds": 3.7e-08,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 2,
+      "job": 2,
+      "phase": "write",
+      "log": "02-002-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 2.057023571,
+        "bandwidth_gib_s": 0.486139301,
+        "fdatasync_seconds": 0.000117828,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 2,
+      "job": 2,
+      "phase": "postwrite-read",
+      "log": "02-002-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.375662715,
+        "bandwidth_gib_s": 2.66196234,
+        "fdatasync_seconds": 3.9e-08,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 2,
+      "job": 0,
+      "phase": "write",
+      "log": "02-000-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 1,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 5.183522537,
+        "bandwidth_gib_s": 0.192919003,
+        "fdatasync_seconds": 7.4383e-05,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 2,
+      "job": 0,
+      "phase": "postwrite-read",
+      "log": "02-000-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.22454491,
+        "bandwidth_gib_s": 4.453452096,
+        "fdatasync_seconds": 1.44e-07,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 2,
+      "job": 1,
+      "phase": "write",
+      "log": "02-001-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 8,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 1.976274871,
+        "bandwidth_gib_s": 0.506002487,
+        "fdatasync_seconds": 0.000126565,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 2,
+      "job": 1,
+      "phase": "postwrite-read",
+      "log": "02-001-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.366100508,
+        "bandwidth_gib_s": 2.731490337,
+        "fdatasync_seconds": 5.2e-08,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 3,
+      "job": 0,
+      "phase": "write",
+      "log": "03-000-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 1,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 5.058685933,
+        "bandwidth_gib_s": 0.197679795,
+        "fdatasync_seconds": 7.6315e-05,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 3,
+      "job": 0,
+      "phase": "postwrite-read",
+      "log": "03-000-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.225520108,
+        "bandwidth_gib_s": 4.4341944,
+        "fdatasync_seconds": 1.27e-07,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 3,
+      "job": 1,
+      "phase": "write",
+      "log": "03-001-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 8,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 1.931517513,
+        "bandwidth_gib_s": 0.517727638,
+        "fdatasync_seconds": 0.000150103,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 3,
+      "job": 1,
+      "phase": "postwrite-read",
+      "log": "03-001-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.365466911,
+        "bandwidth_gib_s": 2.736225825,
+        "fdatasync_seconds": 4.2e-08,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 3,
+      "job": 2,
+      "phase": "write",
+      "log": "03-002-write.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "write",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 4096,
+        "seed": 133,
+        "seconds": 2.034175705,
+        "bandwidth_gib_s": 0.491599618,
+        "fdatasync_seconds": 9.5998e-05,
+        "latency_samples": 0,
+        "verify": false
+      }
+    },
+    {
+      "repeat": 3,
+      "job": 2,
+      "phase": "postwrite-read",
+      "log": "03-002-postwrite-read.log",
+      "measurement": {
+        "backend": "gds",
+        "op": "read",
+        "pattern": "sequential",
+        "threads": 64,
+        "bytes": 1073741824,
+        "io_bytes": 65536,
+        "seed": 133,
+        "seconds": 0.383697781,
+        "bandwidth_gib_s": 2.606217835,
+        "fdatasync_seconds": 4.4e-08,
+        "latency_samples": 0,
+        "verify": false
+      }
+    }
+  ],
+  "reset_tool_sha256": "59fa7474d2124177d8e8fedd2c0c689453c03157d22a67e57839ba3ce02feb1f",
+  "source_manifest_sha256": "b04dee07c3260e060cca03bc8cc5e6c0563fb5b0fff913e87b7c69959cfd68d2",
+  "libnvm_sha256": "0ead73ff5cda0b69b7d9ace8c47ff73baaa2b78b7d1f138ba9287f7c7ca5ff58",
+  "resets": [
+    {
+      "repeat": 1,
+      "job": 0,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "01-000-device-reset.log"
+    },
+    {
+      "repeat": 1,
+      "job": 2,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "01-002-device-reset.log"
+    },
+    {
+      "repeat": 1,
+      "job": 1,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "01-001-device-reset.log"
+    },
+    {
+      "repeat": 2,
+      "job": 2,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "02-002-device-reset.log"
+    },
+    {
+      "repeat": 2,
+      "job": 0,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "02-000-device-reset.log"
+    },
+    {
+      "repeat": 2,
+      "job": 1,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "02-001-device-reset.log"
+    },
+    {
+      "repeat": 3,
+      "job": 0,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "03-000-device-reset.log"
+    },
+    {
+      "repeat": 3,
+      "job": 1,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "03-001-device-reset.log"
+    },
+    {
+      "repeat": 3,
+      "job": 2,
+      "argv": [
+        "/usr/bin/python3",
+        "/tmp/ShaperIO-AE-core/tools/pm9a3_device.py",
+        "format-gds",
+        "--allow-destroy",
+        "--file-bytes",
+        "1073741824"
+      ],
+      "log": "03-002-device-reset.log"
+    }
+  ],
+  "cufile_config_sha256": "de633e32a0fd62382115ea7ecf978eef8170a36c9fbb41ed0a14bb2cd673a266",
+  "cuda_module_loading": "EAGER",
+  "finished_utc": "2026-09-22T22:23:43.596775+00:00"
+}

@@ -1,0 +1,11 @@
++ nvme id-ctrl /dev/nvme1 -o json
+{"bdf": "0000:27:00.0", "model": "SAMSUNG MZQL27T6HBLA-00A07", "serial": "S6CKNT0W914900"}
++ nvme list-ns /dev/nvme1 -a -o json
++ umount /mnt/shaperio-ae-pm9a3
++ nvme format /dev/nvme1n1 --namespace-id=1 --lbaf=0 --ses=0 --force
+Success formatting namespace:1
++ udevadm settle
++ udevadm settle
++ ls -l /sys/class/libnvm helper
+total 0
+lrwxrwxrwx 1 root root 0 Sep 23 06:23 libnvm0 -> ../../devices/virtual/libnvm helper/libnvm0

@@ -1,0 +1,26 @@
++ nvme id-ctrl /dev/nvme1 -o json
+{"bdf": "0000:27:00.0", "model": "SAMSUNG MZQL27T6HBLA-00A07", "serial": "S6CKNT0W914900"}
++ nvme list-ns /dev/nvme1 -a -o json
++ umount /mnt/shaperio-ae-pm9a3
++ nvme format /dev/nvme1n1 --namespace-id=1 --lbaf=0 --ses=0 --force
+Success formatting namespace:1
++ udevadm settle
++ mkfs.ext4 -F -m 0 -T largefile4 -E lazy_itable_init=0,lazy_journal_init=0,nodiscard -L shaperio-ae /dev/nvme1n1
+mke2fs 1.46.5 (30-Dec-2021)
+Creating filesystem with 1875366486 4k blocks and 1831424 inodes
+Filesystem UUID: 73789974-42fa-42fe-a0f2-9e54789c3ea3
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, 
+	102400000, 214990848, 512000000, 550731776, 644972544
+
+Allocating group tables:     0/57232           done                            
+Writing inode tables:     0/5723227407/57232           done                            
+Creating journal (262144 blocks): done
+Writing superblocks and filesystem accounting information:     0/57232           done
+
++ mount -t ext4 -o noatime,data=ordered /dev/nvme1n1 /mnt/shaperio-ae-pm9a3
++ findmnt /mnt/shaperio-ae-pm9a3
+TARGET                 SOURCE       FSTYPE OPTIONS
+/mnt/shaperio-ae-pm9a3 /dev/nvme1n1 ext4   rw,noatime,stripe=32,data=ordered
++ fallocate -l 1073741824 /mnt/shaperio-ae-pm9a3/core.bin

@@ -1,0 +1,13 @@
+panel,backend,x,condition,phase,op,metric,n,median,min,max
+fig1a,bam,1,readers=128,postwrite-read,read,bandwidth_gib_s,3,5.965780872,5.940089176,5.971288867
+fig1a,bam,1,readers=128,write,write,bandwidth_gib_s,3,0.177500726,0.17723133,0.17829935
+fig1a,bam,8,readers=128,postwrite-read,read,bandwidth_gib_s,3,2.858948645,2.838374217,2.860455796
+fig1a,bam,8,readers=128,write,write,bandwidth_gib_s,3,0.493311302,0.490637784,0.494233301
+fig1a,bam,64,readers=128,postwrite-read,read,bandwidth_gib_s,3,2.282568112,2.274524438,2.295563303
+fig1a,bam,64,readers=128,write,write,bandwidth_gib_s,3,1.607020829,1.598854103,1.616100241
+fig1a,bam,512,readers=128,postwrite-read,read,bandwidth_gib_s,3,1.118101902,1.116368695,1.123286138
+fig1a,bam,512,readers=128,write,write,bandwidth_gib_s,3,3.433631101,3.376655469,3.445272444
+fig1a,bam,2048,readers=128,postwrite-read,read,bandwidth_gib_s,3,1.134962362,1.116112256,1.134983511
+fig1a,bam,2048,readers=128,write,write,bandwidth_gib_s,3,3.390656552,3.383393822,3.434241064
+fig1a,bam,4096,readers=128,postwrite-read,read,bandwidth_gib_s,3,1.413288448,1.115143615,1.505451749
+fig1a,bam,4096,readers=128,write,write,bandwidth_gib_s,3,3.428924941,3.426185096,3.442627946

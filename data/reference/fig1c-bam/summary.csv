@@ -1,0 +1,16 @@
+panel,backend,x,condition,phase,op,metric,n,median,min,max
+fig1c,bam,1,read-latency,read,read,bandwidth_gib_s,1,1.852196023,1.852196023,1.852196023
+fig1c,bam,1,read-latency,read,read,p50_us,1,32.768,32.768,32.768
+fig1c,bam,1,read-latency,read,read,p99_us,1,34.816,34.816,34.816
+fig1c,bam,16,read-latency,read,read,bandwidth_gib_s,1,5.575574058,5.575574058,5.575574058
+fig1c,bam,16,read-latency,read,read,p50_us,1,167.936,167.936,167.936
+fig1c,bam,16,read-latency,read,read,p99_us,1,265.216,265.216,265.216
+fig1c,bam,256,read-latency,read,read,bandwidth_gib_s,1,6.131346434,6.131346434,6.131346434
+fig1c,bam,256,read-latency,read,read,p50_us,1,2450.432,2450.432,2450.432
+fig1c,bam,256,read-latency,read,read,p99_us,1,5051.392,5051.392,5051.392
+fig1c,bam,1024,read-latency,read,read,bandwidth_gib_s,1,2.063546891,2.063546891,2.063546891
+fig1c,bam,1024,read-latency,read,read,p50_us,1,30223.36,30223.36,30223.36
+fig1c,bam,1024,read-latency,read,read,p99_us,1,33685.504,33685.504,33685.504
+fig1c,bam,4096,read-latency,read,read,bandwidth_gib_s,1,2.452908873,2.452908873,2.452908873
+fig1c,bam,4096,read-latency,read,read,p50_us,1,100691.968,100691.968,100691.968
+fig1c,bam,4096,read-latency,read,read,p99_us,1,105296.896,105296.896,105296.896

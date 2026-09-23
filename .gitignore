@@ -1,0 +1,6 @@
+/build*/
+/results/
+/configs/device.local.json
+__pycache__/
+*.pyc
+*.zh-CN.md

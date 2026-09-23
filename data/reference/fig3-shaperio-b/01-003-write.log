@@ -1,0 +1,9 @@
+SQs: 129	CQs: 129	n_qps: 129
+n_ranges_bits: 6
+n_ranges_mask: 63
+pages_dma: 0x792662010000	23e020810000
+HEREN
+Cond1
+100000 8 1 100000
+Finish Making Page Cache
+{"backend":"shaperio","op":"write","pattern":"sequential","threads":256,"bytes":1073741824,"io_bytes":4096,"seed":133,"seconds":0.291554291,"bandwidth_gib_s":3.429892928,"buffer_bytes":4294967296,"window":256,"ring":1048576,"knee_limit":32,"latency_samples":0,"verify":false,"submitted_ios":262144,"merged_ios":1024,"scheduler_batches":4,"batch_bytes":536870912,"tile_pages":0,"drain_wait_initial_ns":8192,"drain_wait_max_ns":8192,"accumulation_policy":"original-ready-probe","worker_order":"linear","write_submit_mode":"batch"}

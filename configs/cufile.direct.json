@@ -1,0 +1,13 @@
+{
+  "logging": {"level": "ERROR"},
+  "profile": {"cufile_stats": 3},
+  "properties": {
+    "allow_compat_mode": false,
+    "force_compat_mode": false,
+    "use_poll_mode": false,
+    "max_direct_io_size_kb": 1024,
+    "max_device_cache_size_kb": 131072
+  },
+  "execution": {"parallel_io": false},
+  "fs": {"generic": {"posix_unaligned_writes": false}}
+}

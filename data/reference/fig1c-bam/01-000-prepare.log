@@ -1,0 +1,8 @@
+SQs: 129	CQs: 129	n_qps: 128
+n_ranges_bits: 6
+n_ranges_mask: 63
+pages_dma: 0x7e7c6e010000	23e020410000
+HEREN
+Done creating PRP
+Finish Making Page Cache
+{"backend":"bam","op":"write","pattern":"sequential","threads":1,"bytes":8589934592,"io_bytes":65536,"seed":133,"seconds":4.841940918,"bandwidth_gib_s":1.652229991,"buffer_bytes":4294967296,"window":1,"ring":4096,"knee_limit":32,"latency_samples":0,"verify":false,"batch_bytes":8589934592}

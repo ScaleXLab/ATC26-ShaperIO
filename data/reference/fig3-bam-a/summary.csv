@@ -1,0 +1,7 @@
+panel,backend,x,condition,phase,op,metric,n,median,min,max
+fig3,bam,1,readers=32,postwrite-read,read,bandwidth_gib_s,1,6.196737919,6.196737919,6.196737919
+fig3,bam,1,readers=32,write,write,bandwidth_gib_s,1,0.176875299,0.176875299,0.176875299
+fig3,bam,512,readers=32,postwrite-read,read,bandwidth_gib_s,1,0.707538105,0.707538105,0.707538105
+fig3,bam,512,readers=32,write,write,bandwidth_gib_s,1,3.452446677,3.452446677,3.452446677
+fig3,bam,4096,readers=32,postwrite-read,read,bandwidth_gib_s,1,1.100008822,1.100008822,1.100008822
+fig3,bam,4096,readers=32,write,write,bandwidth_gib_s,1,3.442577672,3.442577672,3.442577672

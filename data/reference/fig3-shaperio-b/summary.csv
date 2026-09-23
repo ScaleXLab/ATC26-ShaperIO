@@ -1,0 +1,11 @@
+panel,backend,x,condition,phase,op,metric,n,median,min,max
+fig3,shaperio,8,readers=32,postwrite-read,read,bandwidth_gib_s,1,6.238301875,6.238301875,6.238301875
+fig3,shaperio,8,readers=32,write,write,bandwidth_gib_s,1,2.490811484,2.490811484,2.490811484
+fig3,shaperio,64,readers=32,postwrite-read,read,bandwidth_gib_s,1,6.263107672,6.263107672,6.263107672
+fig3,shaperio,64,readers=32,write,write,bandwidth_gib_s,1,3.341988493,3.341988493,3.341988493
+fig3,shaperio,128,readers=32,postwrite-read,read,bandwidth_gib_s,1,6.240853364,6.240853364,6.240853364
+fig3,shaperio,128,readers=32,write,write,bandwidth_gib_s,1,3.411703179,3.411703179,3.411703179
+fig3,shaperio,256,readers=32,postwrite-read,read,bandwidth_gib_s,1,6.192533205,6.192533205,6.192533205
+fig3,shaperio,256,readers=32,write,write,bandwidth_gib_s,1,3.429892928,3.429892928,3.429892928
+fig3,shaperio,1024,readers=32,postwrite-read,read,bandwidth_gib_s,1,6.363504308,6.363504308,6.363504308
+fig3,shaperio,1024,readers=32,write,write,bandwidth_gib_s,1,3.320319763,3.320319763,3.320319763

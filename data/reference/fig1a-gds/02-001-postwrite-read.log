@@ -1,0 +1,1 @@
+{"backend":"gds","op":"read","pattern":"sequential","threads":64,"bytes":1073741824,"io_bytes":65536,"seed":133,"seconds":0.366100508,"bandwidth_gib_s":2.731490337,"fdatasync_seconds":0.000000052,"latency_samples":0,"verify":false}
